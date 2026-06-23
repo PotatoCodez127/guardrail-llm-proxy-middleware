@@ -1,0 +1,52 @@
+# pyproject.toml
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "guardrail-llm-proxy-middleware"
+version = "0.1.0"
+description = "Enterprise-grade safety middleware implementing decoupled LLM-as-a-Judge validation matrices."
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["llm-guardrails", "llm-as-a-judge", "safety-middleware", "ollama-proxy", "structured-outputs"]
+authors = [
+    { name = "Jeandre", email = "developer@example.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: OS Independent",
+    "Topic :: Security",
+]
+dependencies = [
+    "ollama>=0.6.0,<0.7.0",
+    "python-dotenv>=1.0.0,<1.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0,<9.0.0",
+    "pytest-asyncio>=0.23.0,<0.24.0",
+    "black>=24.0.0,<25.0.0",
+    "mypy>=1.9.0,<1.10.0",
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q --strict-markers"
+testpaths = ["tests"]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+include = '\.pyi?$'
