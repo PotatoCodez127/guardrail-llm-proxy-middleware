@@ -1,15 +1,21 @@
-# AI Guardrail & Proxy Proxy
+# AI Guardrail & Proxy Middleware
 
 ## Overview
-This project demonstrates the "LLM-as-a-Judge" and Guardrail pattern. It acts as a safety middleware layer between an autonomous AI agent and the end user.
+This project establishes an enterprise-grade "LLM-as-a-Judge" safety layer. Operating as asynchronous middleware between autonomous AI agents and end-users, it intercepts, evaluates, and deterministically routes generated outputs to prevent policy violations, prompt injections, and off-topic domain drift.
 
-## The Problem Solved
-Large Language Models are susceptible to prompt injection, jailbreaks, and going off-topic (e.g., a travel bot giving financial advice). A single model cannot reliably generate an answer *and* critique its own safety simultaneously. This architecture uses a secondary, smaller "Judge" model to evaluate the primary model's output before it is ever shown to the user.
+## Architectural Paradigm
+Large Language Models exhibit structural vulnerabilities when tasked with simultaneous generation and self-critique. This architecture deploys a decoupled, secondary "Judge" model enforcing strict validation matrices before output delivery.
 
 ## Tech Stack
-* **Python 3.10+**
-* **Ollama Cloud:** For both the Primary Generator model and the Secondary Judge model.
+* **Python 3.10+** (Asynchronous execution topology)
+* **Ollama Cloud/Local:** Core inference engine for both Primary Generator and Secondary Judge models.
+* **Pydantic:** Strict configuration and schema enforcement.
 
+## Environment Initialization (Local Development)
+1. Clone the repository and establish an isolated virtual environment:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ## Setup Instructions
 1. Clone the repository.
 2. Create a virtual environment: `python -m venv venv`
